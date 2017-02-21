@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body style="font-family: Tahoma;">
+  <span th:text="#{email.hello}">hello</span>
+  <span th:text="${user}">User</span>,
+  <p />
+  <span th:text="#{email.single.message}">Message</span>:
+  <span th:text="${content.name}">Journal</span>
+  <p />
+  <span th:text="#{email.greetings}">greetings</span>
+  <br />
+  <span th:text="#{email.signature}">signature</span>
+</body>
+</html>
