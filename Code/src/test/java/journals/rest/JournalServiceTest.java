@@ -7,16 +7,19 @@ import static org.junit.Assert.fail;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.ClassRule;
 import org.junit.FixMethodOrder;
+import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.rules.SpringClassRule;
+import org.springframework.test.context.junit4.rules.SpringMethodRule;
 
-import journals.Application;
+import journals.WebApplication;
 import journals.model.Journal;
 import journals.model.Publisher;
 import journals.model.User;
@@ -25,11 +28,17 @@ import journals.service.JournalService;
 import journals.service.ServiceException;
 import journals.service.UserService;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
-@WebAppConfiguration
+@SpringApplicationConfiguration(classes = WebApplication.class)
+@TestPropertySource(locations="classpath:test.properties")  
+@ActiveProfiles("web")
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JournalServiceTest {
+  
+  @ClassRule
+  public static final SpringClassRule SCR = new SpringClassRule();
+
+  @Rule
+  public SpringMethodRule springMethodRule = new SpringMethodRule();
 
 	private final static String NEW_JOURNAL_NAME = "New Journal";
 

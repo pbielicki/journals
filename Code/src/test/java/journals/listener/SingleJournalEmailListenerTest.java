@@ -1,6 +1,7 @@
 package journals.listener;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.collection.IsArrayWithSize.arrayWithSize;
 import static org.hamcrest.text.StringContainsInOrder.stringContainsInOrder;
 import static org.junit.Assert.assertThat;
@@ -30,7 +31,6 @@ import org.springframework.test.context.junit4.rules.SpringMethodRule;
 
 import com.google.gson.Gson;
 import com.icegreen.greenmail.util.GreenMail;
-import com.icegreen.greenmail.util.ServerSetup;
 
 import journals.Application;
 import journals.dto.JournalDTO;
@@ -53,6 +53,7 @@ public class SingleJournalEmailListenerTest {
   @Rule
   public MockitoRule rule = MockitoJUnit.rule();
   
+  @Autowired
   GreenMail smtpServer;
   
   @Autowired
@@ -72,7 +73,6 @@ public class SingleJournalEmailListenerTest {
   
   @Before
   public void before() {
-    smtpServer = new GreenMail(new ServerSetup(8025, null, "smtp"));
     smtpServer.start();
   }
 
