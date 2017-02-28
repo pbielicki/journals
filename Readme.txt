@@ -1,5 +1,10 @@
+0. Running
+- JMS broker:     docker run --name='activemq' -it --rm -p 8161:8161 -p 61616:61616 -p 61613:61613 webcenter/activemq:latest
+- Scheduler:      mvn spring-boot:run -Pnoweb -Drun.profiles=scheduler
+- JMS listeners:  mvn spring-boot:run -Pnoweb -Drun.profiles=jms
+- Web app + REST: mvn spring-boot:run -Drun.profiles=web
+
 1. Prerequisites:
- * Launch ActiveMQ e.g. using Docker: docker run --name='activemq' -it --rm -p 8161:8161 -p 61616:61616 -p 61613:61613 webcenter/activemq:latest
  * Install local SMTP server or use existing one. In src/main/resources/application.properties you can set it up for mailService. Supported options are:
    - java.mail.host - SMTP host (defaults to localhost)
    - java.mail.port - defaults to 25
